@@ -1,37 +1,37 @@
-// src/redux/slices/usersSlice.js
+// src/redux/slices/fetchTodoSlice.js
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchUsers = createAsyncThunk("getUsers", async () => {
+export const fetchTodos = createAsyncThunk("getTodos", async () => {
   const response = await axios.get(
-    "https://jsonplaceholder.typicode.com/users"
+    "https://jsonplaceholder.typicode.com/todos"
   );
   return response.data;
 });
 
 const initialState = {
   isLoading: false,
-  users: [],
+  todos: [],
   error: "",
 };
 
-const usersSlice = createSlice({
-  name: "users",
+const fetchTodoSlice = createSlice({
+  name: "todos",
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state) => {
+      .addCase(fetchTodos.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchTodos.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.users = action.payload;
+        state.todos = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchTodos.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       });
   },
 });
 
-export default usersSlice.reducer;
+export default fetchTodoSlice.reducer;

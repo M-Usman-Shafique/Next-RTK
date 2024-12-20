@@ -1,11 +1,11 @@
 // src/redux/store.js
 const { configureStore } = require("@reduxjs/toolkit");
-import counterReducer from "./slices/counterSlice";
-import usersReducer from "./slices/usersSlice";
+import todoReducer from "./slices/todoSlice";
+import fetchTodoReducer from "./slices/fetchTodoSlice";
 
 export const store = configureStore({
   reducer: {
-    globalCounter: counterReducer,
-    usersReducer,
+    globalTodo: todoReducer,
+    fetchTodoReducer,
   },
 });

@@ -1,11 +1,11 @@
-import Counter from "@/components/Counter";
-import Users from "@/components/Users";
+import Todo from "@/components/Todo";
+import GetTodos from "@/components/GetTodos";
 
 export default function Home() {
   return (
-    <main className="flex justify-center items-center gap-5 min-h-screen">
-      <Counter />
-      <Users />
+    <main className="flex flex-col items-center justify-center gap-5 min-h-screen">
+      <Todo />
+      <GetTodos />
     </main>
   );
 }
