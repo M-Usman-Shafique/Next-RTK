@@ -1,10 +1,10 @@
 "use client";
-import { addTodo, clearAllTodos } from "@/redux/slices/todoSlice";
+import { addTodo, removeTodo, clearAllTodos } from "@/redux/slices/todoSlice";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import Todos from "./Todos";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Todo() {
+  const todos = useSelector((state) => state.globalTodo.todos);
   const dispatch = useDispatch();
   const [task, setTask] = useState("");
 
@@ -15,8 +15,8 @@ export default function Todo() {
   };
 
   return (
-    <div className="space-y-5 pt-10">
-      <h1 className="text-2xl font-bold text-center">📜 Todo App</h1>
+    <div className="space-y-5">
+      <h1 className="text-2xl font-bold text-center">📝 Custom Todos</h1>
       <form
         onSubmit={handleSubmit}
         className="bg-white/10 text-white p-4 rounded-lg shadow-lg flex justify-between gap-2"
@@ -43,7 +43,27 @@ export default function Todo() {
           Delete All
         </button>
       </form>
-      <Todos />
+      <div>
+        {todos.length > 0 ? (
+          todos?.map((todo, index) => (
+            <div
+              key={index}
+              className="bg-white/10 text-white p-6 rounded-lg shadow-lg my-2 flex justify-between"
+            >
+              <h3>{todo}</h3>
+              <button
+                type="button"
+                onClick={() => dispatch(removeTodo(index))}
+                className="opacity-60 hover:opacity-90"
+              >
+                ❌
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-stone-500">No custom todos.</p>
+        )}
+      </div>
     </div>
   );
 }
