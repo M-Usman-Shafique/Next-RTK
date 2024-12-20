@@ -21,7 +21,7 @@ export default function Users() {
       <ul className="px-4">
         {!isLoading && users?.length > 0
           ? users?.map((user) => <li key={user.id} className="list-disc">{user.name}</li>)
-          : null}
+          : <p className="">No users yet.</p>}
       </ul>
     </div>
   );

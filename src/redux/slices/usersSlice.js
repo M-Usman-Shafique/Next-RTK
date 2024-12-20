@@ -1,7 +1,6 @@
-import axios from "axios";
-
 // src/redux/slices/usersSlice.js
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchUsers = createAsyncThunk("getUsers", async () => {
   const response = await axios.get(
